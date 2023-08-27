@@ -30,6 +30,7 @@ const io = require("socket.io")(server, {
       "http://localhost:3001",
       "http://localhost:3002",
       "http://localhost:3003",
+      "https://main-todo-app-com.vercel.app",
     ],
   },
 });
