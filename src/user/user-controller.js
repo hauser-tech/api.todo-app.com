@@ -68,6 +68,7 @@ exports.getUser = catchAsyncErrors(async (req, res, next) => {
 exports.userLogout = catchAsyncErrors(async (req, res, next) => {
   try {
     // res.clearCookie("token");
+    req.user = undefined;
     return res
       .status(201)
       .cookie("token", undefined)
