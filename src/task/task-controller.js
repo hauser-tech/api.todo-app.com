@@ -6,10 +6,13 @@ exports.createTask = catchAsyncErrors(async (req, res, next) => {
   try {
     const { name, dueDate } = req.body;
 
-    const task = await Task.findOne({ name: name.toLowerCase() });
+    const task = await Task.findOne({
+      name: name.toLowerCase(),
+      userId: req.user._id,
+    });
 
     if (task) {
-      return next(new ErrorHandler("Task already exists", 400));
+      return next(new ErrorHandler("Task already exists.", 400));
     }
 
     const currentTask = {
