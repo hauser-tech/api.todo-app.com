@@ -67,10 +67,8 @@ exports.getUser = catchAsyncErrors(async (req, res, next) => {
 
 exports.userLogout = catchAsyncErrors(async (req, res, next) => {
   try {
-    return res
-      .status(201)
-      .cookie("token", null)
-      .json({ message: "User Logged Out Successfully." });
+    res.clearCookie("token");
+    return res.status(201).json({ message: "User Logged Out Successfully." });
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
   }
